@@ -1,0 +1,47 @@
+# group for new role
+- id: fuel-plugin-upstream-debian
+  type: group
+  role: [fuel-plugin-upstream-debian]
+  requires: [deploy_start]
+  required_for: [deploy_end, primary-controller, controller]
+  tasks: [fuel-plugin-upstream-debian-pins, fuel-plugin-upstream-debian-facts,
+    fuel-plugin-upstream-debian-repos, fuel_pkgs, hiera, globals, tools, logging,
+    netconfig, hosts, firewall, deploy_start]
+  parameters:
+    strategy:
+      type: parallel
+
+# These tasks will be merged into deployment graph. Here you
+# can specify new tasks for any roles, even built-in ones.
+
+- id: fuel-plugin-upstream-debian-pins
+  type: puppet
+  role: [fuel-plugin-upstream-debian]
+  requires: [deploy_start]
+  required_for: [fuel_pkgs]
+  parameters:
+    puppet_manifest: "apply_mos_package_pins.pp"
+    puppet_modules: "/etc/puppet/modules"
+    timeout: 300
+
+
+- id: fuel-plugin-upstream-debian-facts
+  type: puppet
+  role: [fuel-plugin-upstream-debian]
+  requires: [deploy_start,hiera]
+  required_for: [globals]
+  parameters:
+    puppet_manifest: "apply_package_fact.pp"
+    puppet_modules: "/etc/puppet/modules"
+    timeout: 300
+
+- id: fuel-plugin-upstream-debian-repos
+  type: puppet
+  role: [fuel-plugin-upstream-debian]
+  requires: [deploy_start,hiera,globals]
+  required_for: [tools]
+  parameters:
+    puppet_manifest: "apply_package_repos.pp"
+    puppet_modules: "/etc/puppet/modules"
+    timeout: 600
+

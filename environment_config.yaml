@@ -1,0 +1,7 @@
+attributes:
+  deb_repo_url:
+    value: 'http://http.us.debian.org/debian'
+    label: 'URL to Debian repository'
+    description: 'This the url to the repository hosting the Debian packages'
+    weight: 25
+    type: "text"
