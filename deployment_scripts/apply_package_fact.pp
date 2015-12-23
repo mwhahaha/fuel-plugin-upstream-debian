@@ -1,4 +1,4 @@
-notice('MOULAR: fuel-plugin-upstream/apply_package_fact.pp')
+notice('MOULAR: fuel-plugin-upstream-debian/apply_package_fact.pp')
 
 $hiera_dir = '/etc/hiera/override'
 $plugin_name = 'upstream-debian'
