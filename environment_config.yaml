@@ -1,7 +1,13 @@
 attributes:
   deb_repo_url:
     value: 'http://http.us.debian.org/debian'
-    label: 'URL to Debian repository'
+    label: 'URL to Debian Repository'
     description: 'This the url to the repository hosting the Debian packages'
     weight: 25
     type: "text"
+  deb_use_experimental:
+    value: 'true'
+    label: 'Use Experimental Packages'
+    description: 'Enable this to add Experimental packages'
+    weight: 30
+    type: "checkbox"
