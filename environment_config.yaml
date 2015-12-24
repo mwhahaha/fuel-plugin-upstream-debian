@@ -6,7 +6,7 @@ attributes:
     weight: 25
     type: "text"
   deb_use_experimental:
-    value: 'true'
+    value: true
     label: 'Use Experimental Packages'
     description: 'Enable this to add Experimental packages'
     weight: 30
